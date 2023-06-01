@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple CRM</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="container">
+        <h2 class="mb-4">Simple CRM</h2>
+
+        <div class="mb-4">
+            <input type="text" class="form-control mb-2" placeholder="Name" v-model="newContact.name">
+            <input type="text" class="form-control mb-2" placeholder="Email" v-model="newContact.email">
+            <button class="btn btn-primary" @click="addContact">Add Contact</button>
+            <button class="btn btn-danger" @click="deleteSelected" v-if="selectedContacts.length">Delete Selected</button>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" @change="toggleAll" v-model="selectAll"></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(contact, index) in contacts">
+                    <td><input type="checkbox" v-model="contact.selected"></td>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
